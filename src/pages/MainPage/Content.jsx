@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import Modal from "../Modal";
+import { PRODUCTS } from "../../data";
 import "./style.css";
 
 const INSTICTION = [
@@ -16,7 +18,36 @@ const INSTICTION = [
   },
 ];
 
-function Content({ setIsOpnScaner }) {
+const POPUP_OVERLAY_CLASSNAME = "modal__window";
+
+function Content({ setIsOpnScaner, qrMessage }) {
+  const [currentProduct, setCurrentProduct] = useState({});
+
+  const [isNotFound, setNotFound] = useState(false);
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
+  useEffect(() => {
+    const foundItem = PRODUCTS.find((item) => item.sku == qrMessage);
+    if (foundItem) {
+      setCurrentProduct(foundItem);
+    } else {
+      setNotFound(true);
+    }
+  }, [qrMessage]);
+
+  const handleModalWindowCloseButtonClick = useCallback((evt) => {
+    evt.preventDefault();
+    setIsOpenModal(false);
+    setCurrentProduct({});
+  }, []);
+
+  const handleModalWindowOverlayClick = useCallback((evt) => {
+    if (evt.target.classList.contains(POPUP_OVERLAY_CLASSNAME)) {
+      setIsOpenModal(false);
+      setCurrentProduct({});
+    }
+  }, []);
+
   return (
     <>
       <header className="main_header">
@@ -185,6 +216,37 @@ function Content({ setIsOpnScaner }) {
           Email : bromcosmitic@gmail.com
         </a>
       </footer>
+
+      {isOpenModal && (
+        <Modal
+          onCloseButtonClick={handleModalWindowCloseButtonClick}
+          onOverlayClick={handleModalWindowOverlayClick}
+        >
+          {currentProduct && !isNotFound ? (
+            <div className="card_wrapper">
+              <img
+                src={currentProduct?.gallery[0]?.img}
+                alt=""
+                className="card_left"
+              />
+              <div className="card_right">
+                <h2 className="card_title">{currentProduct?.title}</h2>
+                <p className="card_sku">SKU:{currentProduct?.sku}</p>
+                <p className="card_price">
+                  {Math.floor(currentProduct?.price)} p.
+                </p>
+                <a href={currentProduct?.url} className="card_link">
+                  Перейти в магазин
+                </a>
+                <p className="card_descr">{currentProduct?.text}</p>
+                <p className="card_descr">Способ применения:</p>
+              </div>
+            </div>
+          ) : (
+            <div className="not_found">Товар не найден</div>
+          )}
+        </Modal>
+      )}
     </>
   );
 }

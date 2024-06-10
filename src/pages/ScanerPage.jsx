@@ -2,10 +2,7 @@ import { Html5Qrcode } from "html5-qrcode";
 import React, { useState, useEffect } from "react";
 import "./../App.css";
 
-function ScanerPage({ isOpenScaner, setIsOpnScaner }) {
-  // const [isEnabled, setEnabled] = useState(false);
-  const [qrMessage, setQrMessage] = useState("");
-
+function ScanerPage({ isOpenScaner, setIsOpnScaner, setQrMessage, qrMessage }) {
   useEffect(() => {
     const config = { fps: 10, qrbox: { width: 300, height: 300 } };
 

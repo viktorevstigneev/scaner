@@ -5,15 +5,20 @@ import Content from "./Content";
 import ScanerPage from "../ScanerPage";
 
 function MainPage() {
-  const [isEnabled, setEnabled] = useState(false);
   const [isOpenScaner, setIsOpnScaner] = useState(false);
+  const [qrMessage, setQrMessage] = useState("");
 
   return (
     <main className="main" id="main">
       {!isOpenScaner ? (
-        <Content setIsOpnScaner={setIsOpnScaner} />
+        <Content setIsOpnScaner={setIsOpnScaner} qrMessage={qrMessage} />
       ) : (
-        <ScanerPage isOpenScaner={isOpenScaner} setIsOpnScaner={setIsOpnScaner} />
+        <ScanerPage
+          isOpenScaner={isOpenScaner}
+          setIsOpnScaner={setIsOpnScaner}
+          qrMessage={qrMessage}
+          setQrMessage={setQrMessage}
+        />
       )}
     </main>
   );

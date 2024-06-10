@@ -190,8 +190,49 @@ html{
     height: 30px;
 }
 
+.card_wrapper{
+    display: flex;
+}
+.card_left{
+    width: 70%;
+}
 
-@media (max-width: 400px ) {
+.card_title{
+    font-size: 20px;
+    line-height: 1.35;
+
+    font-family: 'TildaSans',Arial,sans-serif;
+    font-weight: 500;
+    color: #000000;
+}
+.card_sku{
+    margin-top: 4px;
+    color: #777;
+}
+
+.card_link{
+    background: #d2ae6c;
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 20px;
+    width: 200px;
+    border-radius: 100px;
+    margin-top: 15px;
+    display: block;
+    text-align: center;
+}
+
+.card_descr{
+    font-size: 14px;
+    font-weight: 200;
+}
+.not_found{
+    font-size: 40px;
+    text-align: center;
+    padding: 40px;
+}
+
+@media (max-width: 600px ) {
     .main_center{
         width: 100%;
     }
@@ -204,7 +245,22 @@ html{
 
 @media (max-width: 748px ) {
 
+    .card_wrapper{
+        flex-direction: column;
+    }
     .header_nav{
         width: 100%;
     }
+}
+
+
+@media (max-width: 1000px ) {
+
+    .card_wrapper{
+        flex-direction: column;
+    }
+    .card_left{
+        margin: 0 auto;
+    }
+   
 }
