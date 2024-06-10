@@ -21,13 +21,17 @@ const INSTICTION = [
 const POPUP_OVERLAY_CLASSNAME = "modal__window";
 
 function Content({ setIsOpnScaner, qrMessage }) {
+  console.log("qrMessage: ", qrMessage);
   const [currentProduct, setCurrentProduct] = useState({});
 
   const [isNotFound, setNotFound] = useState(false);
+  console.log("isNotFound: ", isNotFound);
   const [isOpenModal, setIsOpenModal] = useState(false);
+  console.log("isOpenModal: ", isOpenModal);
 
   useEffect(() => {
     const foundItem = PRODUCTS.find((item) => item.sku == qrMessage);
+    console.log("foundItem: ", foundItem);
     if (foundItem) {
       setCurrentProduct(foundItem);
     } else {
