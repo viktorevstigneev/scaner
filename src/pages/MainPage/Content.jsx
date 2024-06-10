@@ -34,8 +34,10 @@ function Content({ setIsOpnScaner, qrMessage }) {
     console.log("foundItem: ", foundItem);
     if (foundItem) {
       setCurrentProduct(foundItem);
+      setIsOpenModal(true);
     } else {
       setNotFound(true);
+      setIsOpenModal(true);
     }
   }, [qrMessage]);
 
