@@ -1,13 +1,13 @@
 import { Html5Qrcode } from "html5-qrcode";
 import React, { useState, useEffect } from "react";
-import "./App.css";
+import "./../App.css";
 
-function App() {
-  const [isEnabled, setEnabled] = useState(false);
+function ScanerPage({ isOpenScaner, setIsOpnScaner }) {
+  // const [isEnabled, setEnabled] = useState(false);
   const [qrMessage, setQrMessage] = useState("");
 
   useEffect(() => {
-    const config = { fps: 10, qrbox: { width: 200, height: 200 } };
+    const config = { fps: 10, qrbox: { width: 300, height: 300 } };
 
     const html5QrCode = new Html5Qrcode("qrCodeContainer");
 
@@ -22,10 +22,10 @@ function App() {
 
     const qrCodeSuccess = (decodedText) => {
       setQrMessage(decodedText);
-      setEnabled(false);
+      setIsOpnScaner(false);
     };
 
-    if (isEnabled) {
+    if (isOpenScaner) {
       html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccess);
       setQrMessage("");
     } else {
@@ -35,17 +35,20 @@ function App() {
     return () => {
       qrScanerStop();
     };
-  }, [isEnabled]);
+  }, [isOpenScaner]);
 
   return (
     <div className="scaner">
       <div id="qrCodeContainer" />
       {qrMessage && <div className="qr-message">{qrMessage}</div>}
-      <button className="start-button" onClick={() => setEnabled(!isEnabled)}>
-        {isEnabled ? "On" : "Off"}
+      <button
+        className="start-button"
+        onClick={() => setIsOpnScaner(!isOpenScaner)}
+      >
+        {isOpenScaner ? "On" : "Off"}
       </button>
     </div>
   );
 }
 
-export default App;
+export default ScanerPage;
