@@ -1,0 +1,210 @@
+html{
+    scroll-behavior: smooth;
+}
+
+.main{
+    background: #246760;
+}
+
+.main_logo_img{
+    max-width: 170px; 
+    width: 170px;
+    display: block;
+    margin: 0 auto;
+}
+
+.main_wrapper{
+    padding: 50px 90px;
+    background: #d2ae6c;
+}
+.main_btn{
+    color: aliceblue;
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+    background: #6683b7;
+    border: none;
+    padding: 10px;
+    margin: 0 auto;
+    display: block;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.main_subt{
+    color: aliceblue;
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+    
+  
+}
+
+.main_instuction{
+    padding-bottom: 40px;
+}
+
+.first{
+    background: url("https://optim.tildacdn.biz/tild6335-6235-4232-b163-633863633838/-/cover/96x96/center/center/-/format/webp/noroot.png");
+    border-width: 2px;
+    border-radius: 3000px;
+    background-color: #d2ae6c;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-color: #000000;
+    border-style: solid;
+    width: 84px;
+    height: 84px;
+}
+
+.second{
+    background: url("https://optim.tildacdn.biz/tild3064-6664-4935-b333-613833643464/-/cover/96x96/center/center/-/format/webp/depositphotos_460211.png");
+    border-width: 2px;
+    border-radius: 3000px;
+    background-color: #2d446e;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-color: #000000;
+    border-style: solid;
+    width: 84px;
+    height: 84px;
+}
+
+.third{
+    background: url("https://optim.tildacdn.biz/tild3430-3835-4065-a365-323130383038/-/cover/96x96/center/center/-/format/webp/free-icon-investigat.png");
+    border-width: 2px;
+    border-radius: 3000px;
+    background-color: #6683b7;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-color: #000000;
+    border-style: solid;
+    width: 84px;
+    height: 84px;
+}
+
+.dash{
+    height: 35px;
+    width: 2px;
+    background: #fff;
+    display: block;
+}
+
+.main_center{
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    margin: 0 auto;
+    align-items: center;
+    gap: 30px;
+}
+
+.main_left{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main_right{
+  width: 70%;
+}
+.main_item{
+    color: aliceblue;
+}
+
+.main__footer{
+    background: #2d446e;
+    border-top: 1px solid #00000000;
+    padding-bottom: 70px;
+}
+
+.footer_title{
+    font-size: 40px;
+    color: #fff;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.footer_text{
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+    margin-top: 40px;
+    font-weight: 300;
+}
+
+.footer_contact{
+ 
+    display: flex;
+    list-style: none;
+    width: 50%;
+    margin: 0 auto;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 40px;
+    padding: 0;
+}
+
+.footer_email{
+    color: #fff;
+    text-align: center;
+    display: block;
+    margin-top: 100px;
+    text-decoration: none;
+}
+
+
+
+
+.main_header{
+    background: #fff;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.header_nav{
+     display: flex;
+     width: 40%;
+     justify-content: space-between;
+     margin: 0 auto;
+     
+
+}
+
+.nav_item{
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    color: #000000;
+    text-decoration: none;
+}
+
+
+.nav_img{
+    width: 30px;
+    height: 30px;
+}
+
+
+@media (max-width: 400px ) {
+    .main_center{
+        width: 100%;
+    }
+    .main_right{
+        font-size: 10px;
+        width: 100%;
+    }
+    
+}
+
+@media (max-width: 748px ) {
+
+    .header_nav{
+        width: 100%;
+    }
+}
