@@ -30,14 +30,16 @@ function Content({ setIsOpnScaner, qrMessage }) {
   console.log("isOpenModal: ", isOpenModal);
 
   useEffect(() => {
-    const foundItem = PRODUCTS.find((item) => item.sku == qrMessage);
-    console.log("foundItem: ", foundItem);
-    if (foundItem) {
-      setCurrentProduct(foundItem);
-      setIsOpenModal(true);
-    } else {
-      setNotFound(true);
-      setIsOpenModal(true);
+    if (qrMessage !== "") {
+      const foundItem = PRODUCTS.find((item) => item.sku == qrMessage);
+      console.log("foundItem: ", foundItem);
+      if (foundItem) {
+        setCurrentProduct(foundItem);
+        setIsOpenModal(true);
+      } else {
+        setNotFound(true);
+        setIsOpenModal(true);
+      }
     }
   }, [qrMessage]);
 
