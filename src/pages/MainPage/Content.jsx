@@ -308,8 +308,10 @@ function Content({ setIsOpnScaner, qrMessage }) {
                 <a href={currentProduct?.url} className="card_link">
                   Перейти в магазин
                 </a>
-                <p className="card_descr">{currentProduct?.text}</p>
-                <p className="card_descr">Способ применения:</p>
+                <p
+                  className="card_descr"
+                  dangerouslySetInnerHTML={{ __html: currentProduct?.text }}
+                />
               </div>
             </div>
           ) : (
