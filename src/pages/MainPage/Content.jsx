@@ -20,9 +20,30 @@ const INSTICTION = [
 
 const POPUP_OVERLAY_CLASSNAME = "modal__window";
 
+const setInStorage = (item) => {
+  const hasData = JSON.parse(localStorage.getItem("history"));
+
+  if (hasData?.length) {
+    localStorage.setItem("history", JSON.stringify([...hasData, item]));
+  } else {
+    localStorage.setItem("history", JSON.stringify([item]));
+  }
+};
+
+const deleteFromStorage = (sku) => {
+  const hasData = JSON.parse(localStorage.getItem("history"));
+
+  if (hasData?.length) {
+    const filtered = hasData.filter((item) => item.sku !== sku);
+    localStorage.setItem("history", JSON.stringify(filtered));
+  }
+};
+
 function Content({ setIsOpnScaner, qrMessage }) {
   console.log("qrMessage: ", qrMessage);
   const [currentProduct, setCurrentProduct] = useState({});
+  const [openHistory, setOpenHistory] = useState(false);
+  const [isDelete, setIsDeleted] = useState(false);
 
   const [isNotFound, setNotFound] = useState(false);
   console.log("isNotFound: ", isNotFound);
@@ -35,6 +56,8 @@ function Content({ setIsOpnScaner, qrMessage }) {
       console.log("foundItem: ", foundItem);
       if (foundItem) {
         setCurrentProduct(foundItem);
+        const { title, sku, price, url, gallery } = foundItem;
+        setInStorage({ title, sku, price, url, img: gallery[0]?.img });
         setIsOpenModal(true);
       } else {
         setNotFound(true);
@@ -80,7 +103,10 @@ function Content({ setIsOpnScaner, qrMessage }) {
             />
             магазин
           </a>
-          <div className="nav_item">
+          <div
+            className="nav_item"
+            onClick={() => setOpenHistory((prev) => !prev)}
+          >
             <img
               class="nav_img"
               src="https://static.tildacdn.biz/lib/icons/tilda/save.svg"
@@ -224,6 +250,42 @@ function Content({ setIsOpnScaner, qrMessage }) {
           Email : bromcosmitic@gmail.com
         </a>
       </footer>
+
+      {openHistory ? (
+        <div className="history">
+          <div className="hostory_top">
+            <div className="hostory_title">История поиска:</div>
+            <div
+              className="history_close"
+              onClick={() => setOpenHistory(false)}
+            >
+              &times;
+            </div>
+          </div>
+
+          <div className="history_content">
+            {isDelete}
+            {JSON.parse(localStorage.getItem("history")).map((item) => (
+              <a className="history__item" href={item.url}>
+                <img className="history_img" src={item.img} alt="" />
+                <div className="history_center">{item.title}</div>
+                <div className="history_right">{item.price}BYN</div>
+                <div
+                  className="history_item_delete"
+                  onClick={(evt) => {
+                    evt.preventDefault();
+                    deleteFromStorage(item.sku);
+                    setIsDeleted((prev) => !prev);
+                  }}
+                >
+                  {" "}
+                  &times;
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      ) : null}
 
       {isOpenModal && (
         <Modal

@@ -182,6 +182,7 @@ html{
     align-items: center;
     color: #000000;
     text-decoration: none;
+    cursor: pointer;
 }
 
 
@@ -230,6 +231,63 @@ html{
     font-size: 40px;
     text-align: center;
     padding: 40px;
+}
+
+
+.history{
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 30%;
+    background: #fff;
+    padding: 24px;
+    box-shadow:0 0 10px 0 rgba(0,0,0,.2)
+}
+
+.hostory_top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #a7a7a7;
+    padding-bottom: 24px;
+}
+.hostory_title{
+    font-size: 24px;
+}
+.history_close{
+    font-size: 44px;
+    font-weight: 100;
+    cursor: pointer;
+}
+
+.history_content{
+    overflow-y: scroll;
+    height: 90%;
+    margin-top: 24px;
+}
+
+.history__item{
+    display: flex;
+    justify-content: space-between;
+    margin: 8px;
+    border-bottom: 1px solid #a0a0a0;
+    padding-bottom: 20px;
+    color: #000000;
+    text-decoration: none;
+}
+
+.history_img{
+    width: 80px;
+    height: 80px;
+    padding: 12px;
+    border: 1px solid #a5a5a5;
+    border-radius: 14px;
+}
+
+.history_item_delete{
+    font-size: 44px;
+    font-weight: 100;
 }
 
 @media (max-width: 600px ) {
