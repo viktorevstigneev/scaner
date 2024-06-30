@@ -45,6 +45,9 @@ function Content({ setIsOpnScaner, qrMessage }) {
   const [openHistory, setOpenHistory] = useState(false);
   const [isDelete, setIsDeleted] = useState(false);
 
+  const [isOpenEnterCode, setOpenEnterCode] = useState(false);
+  const [inputVale, setInputValue] = useState("");
+
   const [isNotFound, setNotFound] = useState(false);
   console.log("isNotFound: ", isNotFound);
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -70,14 +73,34 @@ function Content({ setIsOpnScaner, qrMessage }) {
     evt.preventDefault();
     setIsOpenModal(false);
     setCurrentProduct({});
+    setOpenEnterCode(false);
   }, []);
 
   const handleModalWindowOverlayClick = useCallback((evt) => {
     if (evt.target.classList.contains(POPUP_OVERLAY_CLASSNAME)) {
       setIsOpenModal(false);
       setCurrentProduct({});
+      setOpenEnterCode(false);
     }
   }, []);
+
+  const handleEnterCode = () => {
+    if (inputVale !== "") {
+      const foundItem = PRODUCTS.find((item) => item.sku == inputVale);
+
+      if (foundItem) {
+        setCurrentProduct(foundItem);
+        const { title, sku, price, url, gallery } = foundItem;
+        setInStorage({ title, sku, price, url, img: gallery[0]?.img });
+        setOpenEnterCode(false);
+        setIsOpenModal(true);
+      } else {
+        setNotFound(true);
+        setOpenEnterCode(false);
+        setIsOpenModal(true);
+      }
+    }
+  };
 
   return (
     <>
@@ -140,6 +163,15 @@ function Content({ setIsOpnScaner, qrMessage }) {
           }}
         >
           Сканировать штрих-код
+        </button>
+        <button
+          style={{ marginTop: "14px" }}
+          className="main_btn"
+          onClick={() => {
+            setOpenEnterCode(true);
+          }}
+        >
+          Ввести код вручную
         </button>
       </div>
       <div className="main_instuction">
@@ -317,6 +349,24 @@ function Content({ setIsOpnScaner, qrMessage }) {
           ) : (
             <div className="not_found">Товар не найден</div>
           )}
+        </Modal>
+      )}
+
+      {isOpenEnterCode && (
+        <Modal
+          onCloseButtonClick={handleModalWindowCloseButtonClick}
+          onOverlayClick={handleModalWindowOverlayClick}
+        >
+          <input
+            className="enter_input"
+            type="text"
+            placeholder="Введите код"
+            value={inputVale}
+            onChange={(evt) => setInputValue(evt.target.value)}
+          />
+          <button className="enter_done" onClick={handleEnterCode}>
+            найти
+          </button>
         </Modal>
       )}
     </>

@@ -291,6 +291,27 @@ html{
     font-weight: 100;
 }
 
+.enter_input{
+    padding: 8px;
+    display: block;
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #919191;
+}
+
+.enter_done{
+    background: rgb(209, 136, 0);
+    outline: none;
+    border: none;
+    padding: 8px 52px;
+    color: white;
+    border-radius: 4px;
+
+    display: block;
+    margin: 0 auto;
+    margin-top: 15px;
+}
+
 @media (max-width: 600px ) {
     .main_center{
         width: 100%;
