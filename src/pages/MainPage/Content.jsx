@@ -265,7 +265,7 @@ function Content({ setIsOpnScaner, qrMessage }) {
 
           <div className="history_content">
             {isDelete}
-            {JSON.parse(localStorage.getItem("history")).map((item) => (
+            {JSON.parse(localStorage.getItem("history"))?.map((item) => (
               <a className="history__item" href={item.url}>
                 <img className="history_img" src={item.img} alt="" />
                 <div className="history_center">{item.title}</div>
